@@ -13,10 +13,24 @@
     $tireqty = $_GET['tireqty'];
     $oilqty = $_GET['oilqty'];
     $sparkqty = $_GET['sparkqty'];
-    echo "<p>Your order is as follows: </p>";
-    echo $tireqty . " tires<br />";
-    echo $oilqty . " bottles of oil<br />";
-    echo $sparkqty . " spark plugs<br />";
+
+    $totalqty = 0;
+    $totalqty = $tireqty + $oilqty + $sparkqty;
+    echo "Items orderd: " . $totalqty. "<br />";
+    $totalamount = 0.00;
+
+    define('TIREPRICE', 100);
+    define('OILPRICE', 10);
+    define('SPARKPRICE', 4);
+
+    $totalamount = $tireqty * TIREPRICE + $oilqty * OILPRICE + $sparkqty * SPARKPRICE;
+
+    echo "Subtotal: $" . number_format($totalamount, 2) . "<br />";
+
+    $taxrate = 0.10;
+    $totalamount = $totalamount * (1 + $taxrate);
+
+    echo "Total including tax: $" . number_format($totalamount, 2) . "<br />";
     ?>
 </body>
 </html>
